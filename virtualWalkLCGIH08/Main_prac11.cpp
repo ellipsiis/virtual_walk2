@@ -187,16 +187,9 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
-	Model BotaDer((char*)"Models/Personaje/bota.obj");
-	Model PiernaDer((char*)"Models/Personaje/piernader.obj");
-	Model PiernaIzq((char*)"Models/Personaje/piernaizq.obj");
-	Model Torso((char*)"Models/Personaje/torso.obj");
-	Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
-	Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
-	Model Cabeza((char*)"Models/Personaje/cabeza.obj");
 	Model objects[] = {
 		(char*)"Models/House/house.obj",
-		(char*)"Models/Bush/Bush.obj"
+		(char*)"Models/sofa/sofa.obj"
 	};
 	// Build and compile our shader program
 
@@ -515,13 +508,17 @@ int main()
 
 
 		//Carga de modelo 
-		//Personaje
+		//House
 		view = camera.GetViewMatrix();
 		glm::mat4 model(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[0].Draw(lightingShader);
+
 		
+
+
+
 
 		
 

@@ -1,461 +1,513 @@
-newmtl initialShadingGroup
+newmtl house:initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl lambert2SG
+newmtl house:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd marble.jpg
 Ni 1.00
-newmtl lambert3SG
+newmtl house:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert4SG
+newmtl house:lambert4SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert7SG
+newmtl house:lambert7SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert8SG
+newmtl house:lambert8SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert9SG
+newmtl house:lambert9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd window2.jpg
+Ni 1.00
+newmtl house:lambert10SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert10SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd glass.png
-Ni 1.00
-newmtl lambert12SG
+newmtl house:lambert12SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert13SG
+newmtl house:lambert13SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert14SG
+newmtl house:lambert14SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert16SG
+newmtl house:lambert16SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteoutwall_concrete.jpg
 Ni 1.00
-newmtl lambert17SG
+newmtl house:lambert17SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl lambert19SG
+newmtl house:lambert19SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert20SG
+newmtl house:lambert20SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl lambert22SG
+newmtl house:lambert22SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd caobawood.jpg
 Ni 1.00
-newmtl lambert24SG
+newmtl house:lambert24SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd marble.jpg
 Ni 1.00
-newmtl lambert25SG
+newmtl house:lambert25SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert26SG
+newmtl house:lambert26SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert27SG
+newmtl house:lambert27SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert29SG
+newmtl house:lambert29SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert30SG
+newmtl house:lambert30SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert31SG
+newmtl house:lambert31SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert32SG
+newmtl house:lambert32SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert33SG
+newmtl house:lambert33SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd marble.jpg
 Ni 1.00
-newmtl lambert34SG
+newmtl house:lambert34SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert36SG
+newmtl house:lambert36SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd caobawood.jpg
 Ni 1.00
-newmtl lambert38SG
+newmtl house:lambert38SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert39SG
+newmtl house:lambert39SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garage.jpg
 Ni 1.00
-newmtl lambert40SG
+newmtl house:lambert40SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert41SG
+newmtl house:lambert41SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert42SG
+newmtl house:lambert42SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd marble.jpg
 Ni 1.00
-newmtl lambert43SG
+newmtl house:lambert43SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert44SG
+newmtl house:lambert44SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd caobawood.jpg
 Ni 1.00
-newmtl lambert45SG
+newmtl house:lambert45SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert46SG
+newmtl house:lambert46SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl lambert47SG
+newmtl house:lambert47SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
-newmtl lambert48SG
+newmtl house:lambert48SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert50SG
+newmtl house:lambert50SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert51SG
+newmtl house:lambert51SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert52SG
+newmtl house:lambert52SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert53SG
+newmtl house:lambert53SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl lambert54SG
+newmtl house:lambert54SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert55SG
+newmtl house:lambert55SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert56SG
+newmtl house:lambert56SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert57SG
+newmtl house:lambert57SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert58SG
+newmtl house:lambert58SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert59SG
+newmtl house:lambert59SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert60SG
+newmtl house:lambert60SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ebonywood.jpg
 Ni 1.00
-newmtl lambert61SG
+newmtl house:lambert61SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl lambert62SG
+newmtl house:lambert62SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteoutwall_concrete.jpg
 Ni 1.00
-newmtl lambert63SG
+newmtl house:lambert63SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl lambert64SG
+newmtl house:lambert64SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl lambert65SG
+newmtl house:lambert65SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd garden.jpg
 Ni 1.00
-newmtl pasted__lambert3SG
+newmtl house:pasted__lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd wall.jpg
 Ni 1.00
-newmtl pasted__lambert32SG
+newmtl house:pasted__lambert32SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl pasted__lambert32SG1
+newmtl house:pasted__pasted__lambert32SG1
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl pasted__pasted__lambert32SG1
+newmtl house:pasted__pasted__lambert32SG3
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl pasted__pasted__lambert32SG2
+newmtl house:pasted__pasted__pasted__pasted__lambert32SG5
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl pasted__pasted__lambert32SG3
+newmtl house:pasted__pasted__pasted__pasted__lambert32SG7
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd whiteinwall.jpg
 Ni 1.00
-newmtl pasted__pasted__pasted__lambert32SG3
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd whiteinwall.jpg
-Ni 1.00
-newmtl pasted__pasted__pasted__lambert32SG4
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd whiteinwall.jpg
-Ni 1.00
-newmtl pasted__pasted__pasted__lambert32SG5
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd whiteinwall.jpg
-Ni 1.00
-newmtl pasted__pasted__pasted__pasted__lambert32SG5
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd whiteinwall.jpg
-Ni 1.00
-newmtl pasted__pasted__pasted__pasted__lambert32SG6
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd whiteinwall.jpg
-Ni 1.00
-newmtl windowrightLambert
+newmtl house:windowrightLambert
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd glass.png
 Ni 1.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_table.jpg
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd steel.jpg
+Ni 1.00
+newmtl plants:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Soil1_R.jpg
+Ni 1.00
+newmtl plants:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Soil1_COL.JPG
+Ni 1.00
+newmtl plants:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Snake_plant_COL.png
+Ni 1.00
+newmtl sofa:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_leather.jpg
+Ni 1.00
+newmtl sofa:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_table.jpg
+Ni 1.00
+newmtl sofa:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd steel.jpg
+Ni 1.00
+newmtl sofa:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_table.jpg
+Ni 1.00
+newmtl sofa:sofa_obj:wire_086086086
+illum 4
+Kd 0.34 0.34 0.34
+Ka 0.34 0.34 0.34
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl sofa:sofa_obj:wire_115115115
+illum 4
+Kd 0.45 0.45 0.45
+Ka 0.45 0.45 0.45
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl sofa:sofa_obj:wire_154154154
+illum 4
+Kd 0.60 0.60 0.60
+Ka 0.60 0.60 0.60
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
