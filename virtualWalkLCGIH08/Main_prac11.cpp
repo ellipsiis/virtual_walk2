@@ -128,7 +128,7 @@ void interpolation(void)
 	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 
 }
-
+//Space for enviroment project variables
 
 
 
@@ -187,10 +187,12 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
+	//Array for objects
 	Model objects[] = {
 		(char*)"Models/House/house.obj",
-		(char*)"Models/sofa/sofa.obj"
+		(char*)"Models/Garage_door/garage_door.obj"
 	};
+	
 	// Build and compile our shader program
 
 	//Inicialización de KeyFrames
@@ -514,6 +516,14 @@ int main()
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[0].Draw(lightingShader);
+		//Garage door
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::rotate(model, 20.f, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[1].Draw(lightingShader);
+
 
 		
 
@@ -736,29 +746,32 @@ void DoMovement()
 			rotRodIzq -= 1.0f;
 		
 	}
+	if (keys[GLFW_KEY_Z]) /*Garage door animations*/
+	{
 
+	}
 	
 
-	//Mov Personaje
-	if (keys[GLFW_KEY_H])
-	{
-		posZ += 1;
-	}
+	////Mov Personaje
+	//if (keys[GLFW_KEY_H])
+	//{
+	//	posZ += 1;
+	//}
 
-	if (keys[GLFW_KEY_Y])
-	{
-		posZ -= 1;
-	}
+	//if (keys[GLFW_KEY_Y])
+	//{
+	//	posZ -= 1;
+	//}
 
-	if (keys[GLFW_KEY_G])
-	{
-		posX -= 1;
-	}
+	//if (keys[GLFW_KEY_G])
+	//{
+	//	posX -= 1;
+	//}
 
-	if (keys[GLFW_KEY_J])
-	{
-		posX += 1;
-	}
+	//if (keys[GLFW_KEY_J])
+	//{
+	//	posX += 1;
+	//}
 
 
 
