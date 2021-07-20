@@ -90,7 +90,11 @@ glm::vec3 pointLightPositions[] = {
 
 glm::vec3 LightP1;
 
-
+//animation garage door
+float garageDoorAngle = 0.0;
+float garageDoorAngleInit = 0.0;
+bool initGarageDoorOpen = false;
+bool initGarageDoorClose = false;
 
 
 void saveFrame(void)
@@ -517,12 +521,14 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[0].Draw(lightingShader);
 		//Garage door
-		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		model = glm::rotate(model, 20.f, glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(300.0f,90.0f,-100.0f));
+		model = glm::rotate(model,garageDoorAngleInit + glm::radians(garageDoorAngle), glm::vec3(-1.0f, 0.0f, 0.0f)); //rotate to set open position angle
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[1].Draw(lightingShader);
+		view = glm::lookAt(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 100.0f, 0.0f));
+
 
 
 		
@@ -607,40 +613,20 @@ int main()
 void animacion()
 {
 
-		//Movimiento del personaje
-
-		if (play)
-		{
-			if (i_curr_steps >= i_max_steps) //end of animation between frames?
-			{
-				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
-				{
-					printf("termina anim\n");
-					playIndex = 0;
-					play = false;
-				}
-				else //Next frame interpolations
-				{
-					i_curr_steps = 0; //Reset counter
-									  //Interpolation
-					interpolation();
-				}
-			}
-			else
-			{
-				//Draw animation
-				posX += KeyFrame[playIndex].incX;
-				posY += KeyFrame[playIndex].incY;
-				posZ += KeyFrame[playIndex].incZ;
-
-				rotRodIzq += KeyFrame[playIndex].rotInc;
-
-				i_curr_steps++;
-			}
-
-		}
+	//garage door movement
+	if (initGarageDoorOpen)
+	{
+		garageDoorAngle += 0.3f;
+		if (garageDoorAngle > 90)
+			initGarageDoorOpen = false;
 	}
+	if (initGarageDoorClose)
+	{
+		garageDoorAngle -= 0.3f;
+		if (garageDoorAngle < 0)
+			initGarageDoorClose = false;
+	}
+}	
 
 
 // Is called whenever a key is pressed/released via GLFW
@@ -748,7 +734,11 @@ void DoMovement()
 	}
 	if (keys[GLFW_KEY_Z]) /*Garage door animations*/
 	{
-
+		initGarageDoorOpen = true; // open door
+	}
+	if (keys[GLFW_KEY_X])
+	{
+		initGarageDoorClose = true; // close door
 	}
 	
 
