@@ -36,7 +36,7 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
+Camera  camera(glm::vec3(0.0f, 0.0f, 0.0f)); //initial position of camera
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -527,8 +527,7 @@ int main()
 		model = glm::rotate(model,garageDoorAngleInit + glm::radians(garageDoorAngle), glm::vec3(-1.0f, 0.0f, 0.0f)); //rotate to set open position angle
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[1].Draw(lightingShader);
-		view = glm::lookAt(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 100.0f, 0.0f));
-
+		
 
 
 		
@@ -617,6 +616,7 @@ void animacion()
 	if (initGarageDoorOpen)
 	{
 		garageDoorAngle += 0.3f;
+		//y = (100.0f) * cos(garageDoorAngle);
 		if (garageDoorAngle > 90)
 			initGarageDoorOpen = false;
 	}
