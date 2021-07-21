@@ -105,6 +105,11 @@ float angleRideTireInit = 0.0;
 float angleRideTire = 0.0;
 bool initBodyworkMov = false;
 bool initTiresMov = false;
+//animation door
+bool initDoorOpen = false;
+bool initDoorClose = false;
+float doorPositionAngleInit = 0.0;
+float doorPositionAngle = 0.0;
 
 
 
@@ -160,7 +165,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 11", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Virtual Walk v1.0", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -208,7 +213,8 @@ int main()
 		(char*)"Models/House/house.obj",
 		(char*)"Models/Garage_door/garage_door.obj",
 		(char*)"Models/MercedezBens/bodywork.obj",
-		(char*)"Models/MercedezBens/tires.obj"
+		(char*)"Models/MercedezBens/tires.obj",
+		(char*)"Models/Door/door.obj"
 	};
 	
 	// Build and compile our shader program
@@ -557,7 +563,13 @@ int main()
 		model = glm::translate(model, glm::vec3(tiresPositionInit, 0.0f, 0.0f) + glm::vec3((-1)*(tiresPosition), 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[3].Draw(lightingShader);
-		
+		//Door
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-120.0f,10.0f,0.0f));
+		model = glm::rotate(model, doorPositionAngleInit + glm::radians(doorPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[4].Draw(lightingShader);
 		
 
 
@@ -641,14 +653,14 @@ void animacion()
 	//garage door movement
 	if (initGarageDoorOpen)
 	{
-		garageDoorAngle += 0.5f;
+		garageDoorAngle += 1.5f;
 		//y = (100.0f) * cos(garageDoorAngle);
 		if (garageDoorAngle > 90)
 			initGarageDoorOpen = false;
 	}
 	if (initGarageDoorClose)
 	{
-		garageDoorAngle -= 0.5f;
+		garageDoorAngle -= 1.5f;
 		if (garageDoorAngle < 0)
 			initGarageDoorClose = false;
 	}
@@ -662,6 +674,23 @@ void animacion()
 		{
 			initBodyworkMov = false;
 			initTiresMov = false;
+		}
+	}
+	//door animation
+	if (initDoorOpen)
+	{
+		doorPositionAngle += 2.5;
+		if (doorPositionAngle > 90)
+		{
+			initDoorOpen = false;
+		}
+	}
+	if (initDoorClose)
+	{
+		doorPositionAngle -= 2.5;
+		if (doorPositionAngle < 0)
+		{
+			initDoorClose = false;
 		}
 	}
 }	
@@ -782,6 +811,14 @@ void DoMovement()
 	{
 		initBodyworkMov = true;
 		initTiresMov = true;
+	}
+	if (keys[GLFW_KEY_V])
+	{
+		initDoorOpen = true;
+	}
+	if (keys[GLFW_KEY_B])
+	{
+		initDoorClose = true;
 	}
 	
 
