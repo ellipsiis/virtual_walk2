@@ -36,7 +36,7 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(0.0f, 0.0f, 0.0f)); //initial position of camera
+Camera  camera(glm::vec3(0.0f, 10.0f, 50.0f)); //initial position of camera
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -95,6 +95,18 @@ float garageDoorAngle = 0.0;
 float garageDoorAngleInit = 0.0;
 bool initGarageDoorOpen = false;
 bool initGarageDoorClose = false;
+
+//animation car
+float bodyworkPositionInit = 0.0;
+float bodyworkPosition = 0.0;
+float tiresPositionInit = 0.0;
+float tiresPosition = 0.0;
+float angleRideTireInit = 0.0;
+float angleRideTire = 0.0;
+bool initBodyworkMov = false;
+bool initTiresMov = false;
+
+
 
 
 void saveFrame(void)
@@ -194,7 +206,9 @@ int main()
 	//Array for objects
 	Model objects[] = {
 		(char*)"Models/House/house.obj",
-		(char*)"Models/Garage_door/garage_door.obj"
+		(char*)"Models/Garage_door/garage_door.obj",
+		(char*)"Models/MercedezBens/bodywork.obj",
+		(char*)"Models/MercedezBens/tires.obj"
 	};
 	
 	// Build and compile our shader program
@@ -527,17 +541,29 @@ int main()
 		model = glm::rotate(model,garageDoorAngleInit + glm::radians(garageDoorAngle), glm::vec3(-1.0f, 0.0f, 0.0f)); //rotate to set open position angle
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[1].Draw(lightingShader);
+		//Mercedez Bens car
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(225.0f,4.0f, -200.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f,1.0f,0.0f));
+		model = glm::translate(model, glm::vec3(bodyworkPositionInit, 0.0f, 0.0f) + glm::vec3((-1)*(bodyworkPosition), 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[2].Draw(lightingShader);
+		//tires car
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(225.0f, 4.0f, -200.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(tiresPositionInit, 0.0f, 0.0f) + glm::vec3((-1)*(tiresPosition), 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[3].Draw(lightingShader);
+		
 		
 
 
 		
 
-
-
-
-		
-
-
+		// end to drawing models
 		glBindVertexArray(0);
 
 
@@ -615,16 +641,28 @@ void animacion()
 	//garage door movement
 	if (initGarageDoorOpen)
 	{
-		garageDoorAngle += 0.3f;
+		garageDoorAngle += 0.5f;
 		//y = (100.0f) * cos(garageDoorAngle);
 		if (garageDoorAngle > 90)
 			initGarageDoorOpen = false;
 	}
 	if (initGarageDoorClose)
 	{
-		garageDoorAngle -= 0.3f;
+		garageDoorAngle -= 0.5f;
 		if (garageDoorAngle < 0)
 			initGarageDoorClose = false;
+	}
+	// car animation
+	if (initBodyworkMov && initTiresMov)
+	{
+		bodyworkPosition += 2.5;
+		tiresPosition += 2.5;
+		angleRideTire += 2.5;
+		if (bodyworkPosition > 450)
+		{
+			initBodyworkMov = false;
+			initTiresMov = false;
+		}
 	}
 }	
 
@@ -739,6 +777,11 @@ void DoMovement()
 	if (keys[GLFW_KEY_X])
 	{
 		initGarageDoorClose = true; // close door
+	}
+	if (keys[GLFW_KEY_C])
+	{
+		initBodyworkMov = true;
+		initTiresMov = true;
 	}
 	
 
