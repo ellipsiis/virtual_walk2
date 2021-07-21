@@ -110,7 +110,11 @@ bool initDoorOpen = false;
 bool initDoorClose = false;
 float doorPositionAngleInit = 0.0;
 float doorPositionAngle = 0.0;
-
+//animation window 
+bool initWindowOpen = false;
+bool initWindowClose = false;
+float windowPositionAngleInit = 0.0;
+float windowsPositionAngle = 0.0;
 
 
 
@@ -214,7 +218,8 @@ int main()
 		(char*)"Models/Garage_door/garage_door.obj",
 		(char*)"Models/MercedezBens/bodywork.obj",
 		(char*)"Models/MercedezBens/tires.obj",
-		(char*)"Models/Door/door.obj"
+		(char*)"Models/Door/door.obj",
+		(char*)"Models/Window/window.obj"
 	};
 	
 	// Build and compile our shader program
@@ -570,7 +575,13 @@ int main()
 		model = glm::rotate(model, doorPositionAngleInit + glm::radians(doorPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[4].Draw(lightingShader);
-		
+		//window
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-150.0f, 135.0f, 10.0f));
+		model = glm::rotate(model, windowPositionAngleInit + glm::radians(windowsPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[5].Draw(lightingShader);
 
 
 		
@@ -688,9 +699,26 @@ void animacion()
 	if (initDoorClose)
 	{
 		doorPositionAngle -= 2.5;
-		if (doorPositionAngle < 0)
+		if (doorPositionAngle == 0)
 		{
 			initDoorClose = false;
+		}
+	}
+	//window animation
+	if (initWindowOpen)
+	{
+		windowsPositionAngle += 2.5;
+		if (windowsPositionAngle == 90)
+		{
+			initWindowOpen = false;
+		}
+	}
+	if (initWindowClose)
+	{
+		windowsPositionAngle -= 2.5;
+		if (windowsPositionAngle == 0)
+		{
+			initWindowClose = false;
 		}
 	}
 }	
@@ -819,6 +847,14 @@ void DoMovement()
 	if (keys[GLFW_KEY_B])
 	{
 		initDoorClose = true;
+	}
+	if (keys[GLFW_KEY_N])
+	{
+		initWindowOpen = true;
+	}
+	if (keys[GLFW_KEY_M])
+	{
+		initWindowClose = true;
 	}
 	
 
