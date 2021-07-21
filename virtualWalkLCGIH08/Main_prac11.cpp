@@ -36,7 +36,7 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
+Camera  camera(glm::vec3(0.0f, 10.0f, 50.0f)); //initial position of camera
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -90,6 +90,31 @@ glm::vec3 pointLightPositions[] = {
 
 glm::vec3 LightP1;
 
+//animation garage door
+float garageDoorAngle = 0.0;
+float garageDoorAngleInit = 0.0;
+bool initGarageDoorOpen = false;
+bool initGarageDoorClose = false;
+
+//animation car
+float bodyworkPositionInit = 0.0;
+float bodyworkPosition = 0.0;
+float tiresPositionInit = 0.0;
+float tiresPosition = 0.0;
+float angleRideTireInit = 0.0;
+float angleRideTire = 0.0;
+bool initBodyworkMov = false;
+bool initTiresMov = false;
+//animation door
+bool initDoorOpen = false;
+bool initDoorClose = false;
+float doorPositionAngleInit = 0.0;
+float doorPositionAngle = 0.0;
+//animation window 
+bool initWindowOpen = false;
+bool initWindowClose = false;
+float windowPositionAngleInit = 0.0;
+float windowsPositionAngle = 0.0;
 
 
 
@@ -128,7 +153,7 @@ void interpolation(void)
 	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 
 }
-
+//Space for enviroment project variables
 
 
 
@@ -144,7 +169,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 11", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Virtual Walk v1.0", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -187,10 +212,16 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
+	//Array for objects
 	Model objects[] = {
 		(char*)"Models/House/house.obj",
-		(char*)"Models/sofa/sofa.obj"
+		(char*)"Models/Garage_door/garage_door.obj",
+		(char*)"Models/MercedezBens/bodywork.obj",
+		(char*)"Models/MercedezBens/tires.obj",
+		(char*)"Models/Door/door.obj",
+		(char*)"Models/Window/window.obj"
 	};
+	
 	// Build and compile our shader program
 
 	//Inicialización de KeyFrames
@@ -514,15 +545,48 @@ int main()
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[0].Draw(lightingShader);
+		//Garage door
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(300.0f,90.0f,-100.0f));
+		model = glm::rotate(model,garageDoorAngleInit + glm::radians(garageDoorAngle), glm::vec3(-1.0f, 0.0f, 0.0f)); //rotate to set open position angle
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[1].Draw(lightingShader);
+		//Mercedez Bens car
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(225.0f,4.0f, -200.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f,1.0f,0.0f));
+		model = glm::translate(model, glm::vec3(bodyworkPositionInit, 0.0f, 0.0f) + glm::vec3((-1)*(bodyworkPosition), 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[2].Draw(lightingShader);
+		//tires car
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(225.0f, 4.0f, -200.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(tiresPositionInit, 0.0f, 0.0f) + glm::vec3((-1)*(tiresPosition), 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[3].Draw(lightingShader);
+		//Door
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-120.0f,10.0f,0.0f));
+		model = glm::rotate(model, doorPositionAngleInit + glm::radians(doorPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[4].Draw(lightingShader);
+		//window
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-150.0f, 135.0f, 10.0f));
+		model = glm::rotate(model, windowPositionAngleInit + glm::radians(windowsPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[5].Draw(lightingShader);
+
 
 		
 
-
-
-
-		
-
-
+		// end to drawing models
 		glBindVertexArray(0);
 
 
@@ -597,40 +661,67 @@ int main()
 void animacion()
 {
 
-		//Movimiento del personaje
-
-		if (play)
+	//garage door movement
+	if (initGarageDoorOpen)
+	{
+		garageDoorAngle += 1.5f;
+		//y = (100.0f) * cos(garageDoorAngle);
+		if (garageDoorAngle > 90)
+			initGarageDoorOpen = false;
+	}
+	if (initGarageDoorClose)
+	{
+		garageDoorAngle -= 1.5f;
+		if (garageDoorAngle < 0)
+			initGarageDoorClose = false;
+	}
+	// car animation
+	if (initBodyworkMov && initTiresMov)
+	{
+		bodyworkPosition += 2.5;
+		tiresPosition += 2.5;
+		angleRideTire += 2.5;
+		if (bodyworkPosition > 450)
 		{
-			if (i_curr_steps >= i_max_steps) //end of animation between frames?
-			{
-				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
-				{
-					printf("termina anim\n");
-					playIndex = 0;
-					play = false;
-				}
-				else //Next frame interpolations
-				{
-					i_curr_steps = 0; //Reset counter
-									  //Interpolation
-					interpolation();
-				}
-			}
-			else
-			{
-				//Draw animation
-				posX += KeyFrame[playIndex].incX;
-				posY += KeyFrame[playIndex].incY;
-				posZ += KeyFrame[playIndex].incZ;
-
-				rotRodIzq += KeyFrame[playIndex].rotInc;
-
-				i_curr_steps++;
-			}
-
+			initBodyworkMov = false;
+			initTiresMov = false;
 		}
 	}
+	//door animation
+	if (initDoorOpen)
+	{
+		doorPositionAngle += 2.5;
+		if (doorPositionAngle > 90)
+		{
+			initDoorOpen = false;
+		}
+	}
+	if (initDoorClose)
+	{
+		doorPositionAngle -= 2.5;
+		if (doorPositionAngle == 0)
+		{
+			initDoorClose = false;
+		}
+	}
+	//window animation
+	if (initWindowOpen)
+	{
+		windowsPositionAngle += 2.5;
+		if (windowsPositionAngle == 90)
+		{
+			initWindowOpen = false;
+		}
+	}
+	if (initWindowClose)
+	{
+		windowsPositionAngle -= 2.5;
+		if (windowsPositionAngle == 0)
+		{
+			initWindowClose = false;
+		}
+	}
+}	
 
 
 // Is called whenever a key is pressed/released via GLFW
@@ -736,29 +827,57 @@ void DoMovement()
 			rotRodIzq -= 1.0f;
 		
 	}
-
+	if (keys[GLFW_KEY_Z]) /*Garage door animations*/
+	{
+		initGarageDoorOpen = true; // open door
+	}
+	if (keys[GLFW_KEY_X])
+	{
+		initGarageDoorClose = true; // close door
+	}
+	if (keys[GLFW_KEY_C])
+	{
+		initBodyworkMov = true;
+		initTiresMov = true;
+	}
+	if (keys[GLFW_KEY_V])
+	{
+		initDoorOpen = true;
+	}
+	if (keys[GLFW_KEY_B])
+	{
+		initDoorClose = true;
+	}
+	if (keys[GLFW_KEY_N])
+	{
+		initWindowOpen = true;
+	}
+	if (keys[GLFW_KEY_M])
+	{
+		initWindowClose = true;
+	}
 	
 
-	//Mov Personaje
-	if (keys[GLFW_KEY_H])
-	{
-		posZ += 1;
-	}
+	////Mov Personaje
+	//if (keys[GLFW_KEY_H])
+	//{
+	//	posZ += 1;
+	//}
 
-	if (keys[GLFW_KEY_Y])
-	{
-		posZ -= 1;
-	}
+	//if (keys[GLFW_KEY_Y])
+	//{
+	//	posZ -= 1;
+	//}
 
-	if (keys[GLFW_KEY_G])
-	{
-		posX -= 1;
-	}
+	//if (keys[GLFW_KEY_G])
+	//{
+	//	posX -= 1;
+	//}
 
-	if (keys[GLFW_KEY_J])
-	{
-		posX += 1;
-	}
+	//if (keys[GLFW_KEY_J])
+	//{
+	//	posX += 1;
+	//}
 
 
 
