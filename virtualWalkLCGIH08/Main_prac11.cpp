@@ -115,6 +115,20 @@ bool initWindowOpen = false;
 bool initWindowClose = false;
 float windowPositionAngleInit = 0.0;
 float windowsPositionAngle = 0.0;
+//animation basket
+bool initBallAnimation = false;
+float ballAngleInit = 70.0;
+float ballX = 0.0;
+float ballXInit = 0.0;
+float ballYInit = 0.0;
+float ballY = 0.0;
+float vInit = 40;
+float vInitX = vInit * cos(glm::radians(ballAngleInit));
+float vInitY = vInit * sin(glm::radians(ballAngleInit));
+float xMax = (pow(vInit,2)*sin(glm::radians(2*ballAngleInit))/9.18);
+float timeAnimation = 0.0;
+float ts = ((20 * sin(glm::radians(30.0))) / 9.18);
+
 
 
 
@@ -219,7 +233,8 @@ int main()
 		(char*)"Models/MercedezBens/bodywork.obj",
 		(char*)"Models/MercedezBens/tires.obj",
 		(char*)"Models/Door/door.obj",
-		(char*)"Models/Window/window.obj"
+		(char*)"Models/Window/window.obj",
+		(char*)"Models/Basketball/basketball.obj"
 	};
 	
 	// Build and compile our shader program
@@ -538,7 +553,7 @@ int main()
 
 
 
-		//Carga de modelo 
+		//Model loading 
 		//House
 		view = camera.GetViewMatrix();
 		glm::mat4 model(1);
@@ -582,7 +597,13 @@ int main()
 		model = glm::rotate(model, windowPositionAngleInit + glm::radians(windowsPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[5].Draw(lightingShader);
-
+		//ball
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-200.0f, 5.0f, 200.0f));
+		model = glm::translate(model, glm::vec3(ballXInit, ballYInit, 0.0f) + glm::vec3(ballX, ballY, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[6].Draw(lightingShader);
 
 		
 
@@ -721,6 +742,18 @@ void animacion()
 			initWindowClose = false;
 		}
 	}
+	//ball animation
+	if (initBallAnimation)
+	{
+		timeAnimation += 0.1;
+		ballX = (vInit * cos(glm::radians(ballAngleInit))) * timeAnimation;
+		ballY = (vInit * sin(glm::radians(ballAngleInit))) * timeAnimation - (9.18 * pow(timeAnimation, 2) / 2);
+		if ( ballX >= xMax )
+		{
+			initBallAnimation = false;
+		}
+		
+	}
 }	
 
 
@@ -856,31 +889,13 @@ void DoMovement()
 	{
 		initWindowClose = true;
 	}
+	if (keys[GLFW_KEY_G])
+	{
+		initBallAnimation = true;
+	}
 	
 
-	////Mov Personaje
-	//if (keys[GLFW_KEY_H])
-	//{
-	//	posZ += 1;
-	//}
-
-	//if (keys[GLFW_KEY_Y])
-	//{
-	//	posZ -= 1;
-	//}
-
-	//if (keys[GLFW_KEY_G])
-	//{
-	//	posX -= 1;
-	//}
-
-	//if (keys[GLFW_KEY_J])
-	//{
-	//	posX += 1;
-	//}
-
-
-
+	
 
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
