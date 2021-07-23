@@ -128,6 +128,20 @@ float vInitY = vInit * sin(glm::radians(ballAngleInit));
 float xMax = (pow(vInit,2)*sin(glm::radians(2*ballAngleInit))/9.18);
 float timeAnimation = 0.0;
 float ts = ((20 * sin(glm::radians(30.0))) / 9.18);
+//animation dron
+bool initDronAnimation = false;
+float dronX = 0.0;
+float dronZ = 500;
+float dronY = 0.0;
+float dronXInit = 0.0;
+float dronZInit = 0.0;
+float dronYInit = 0.0;
+bool way0 = false;
+bool way1 = false;
+bool way2 = false;
+bool way3 = false;
+
+
 
 
 
@@ -234,7 +248,8 @@ int main()
 		(char*)"Models/MercedezBens/tires.obj",
 		(char*)"Models/Door/door.obj",
 		(char*)"Models/Window/window.obj",
-		(char*)"Models/Basketball/basketball.obj"
+		(char*)"Models/Basketball/basketball.obj",
+		(char*)"Models/Dron/dron.obj"
 	};
 	
 	// Build and compile our shader program
@@ -604,6 +619,14 @@ int main()
 		model = glm::translate(model, glm::vec3(ballXInit, ballYInit, 0.0f) + glm::vec3(ballX, ballY, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[6].Draw(lightingShader);
+		//Dron
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-100.0f, 12.0f, 600.0));
+		model = glm::translate(model, glm::vec3(dronXInit,dronYInit,dronZInit)+glm::vec3(dronX,dronY,-dronZ));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[7].Draw(lightingShader);
+		
 
 		
 
@@ -748,11 +771,60 @@ void animacion()
 		timeAnimation += 0.1;
 		ballX = (vInit * cos(glm::radians(ballAngleInit))) * timeAnimation;
 		ballY = (vInit * sin(glm::radians(ballAngleInit))) * timeAnimation - (9.18 * pow(timeAnimation, 2) / 2);
-		if ( ballX >= xMax )
+		if ( ballX >= xMax - 1 )
 		{
 			initBallAnimation = false;
 		}
 		
+	}
+	//dron animation
+	if (initDronAnimation)
+	{
+		if (way0)
+		{
+			dronY += 1.0;
+			if (dronY > 250)
+			{
+				way0 = false;
+				way1 = true;
+			}
+		}
+		if (way1)
+		{
+			dronZ -= 1.0;
+			dronX = sqrt((90000000000 / 250000) - (360000 * pow(dronZ, 2) / 250000));
+			printf("Way1\n");
+			printf("dronZ: %.4f\n", dronZ);
+			printf("dronX: %.4f\n", dronX);
+			if (dronZ < -500)
+			{
+				way1 = false;
+				way2 = true;
+			}
+		}
+		if (way2)
+		{
+			dronZ += 1.0;
+			dronX = (-1)*sqrt((90000000000 / 250000) - (360000 * pow(dronZ, 2) / 250000));
+			printf("Way2\n");
+			printf("dronZ: %.4f\n", dronZ);
+			printf("dronX: %.4f\n", dronX);
+			if (dronZ > 500)
+			{
+				way2 = false;
+				way3 = true;
+				dronX = 0.0;
+			}
+		}
+		if (way3)
+		{
+			dronY -= 1.0;
+			if (dronY < 1)
+			{
+				way3 = 0;
+				dronY = 0.0;
+			}
+		}
 	}
 }	
 
@@ -892,6 +964,19 @@ void DoMovement()
 	if (keys[GLFW_KEY_G])
 	{
 		initBallAnimation = true;
+	}
+	if (keys[GLFW_KEY_H])
+	{
+		initBallAnimation = false;
+	}
+	if (keys[GLFW_KEY_J])
+	{
+		initDronAnimation = true;
+		way0 = true;
+	}
+	if (keys[GLFW_KEY_K])
+	{
+		initDronAnimation = false;
 	}
 	
 
