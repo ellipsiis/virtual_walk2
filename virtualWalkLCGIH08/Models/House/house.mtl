@@ -512,7 +512,7 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd white_box.jpg
+map_Kd white_wood2.jpg
 Ni 1.00
 newmtl lambert5SG
 illum 4
@@ -604,6 +604,42 @@ newmtl sofa:sofa_obj:wire_154154154
 illum 4
 Kd 0.60 0.60 0.60
 Ka 0.60 0.60 0.60
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl sofa2:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_leather.jpg
+Ni 1.00
+newmtl sofa2:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_table.jpg
+Ni 1.00
+newmtl sofa2:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd steel.jpg
+Ni 1.00
+newmtl sofa2:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white_table.jpg
+Ni 1.00
+newmtl sofa2:wire_086086086
+illum 4
+Kd 0.34 0.34 0.34
+Ka 0.34 0.34 0.34
 Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.35 0.35 0.35

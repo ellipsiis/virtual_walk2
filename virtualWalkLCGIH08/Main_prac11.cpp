@@ -113,8 +113,8 @@ float doorPositionAngle = 0.0;
 //animation window 
 bool initWindowOpen = false;
 bool initWindowClose = false;
-float windowPositionAngleInit = 0.0;
-float windowsPositionAngle = 0.0;
+float windowPositionInit = 0.0;
+float windowsPosition = 0.0;
 //animation basket
 bool initBallAnimation = false;
 float ballAngleInit = 70.0;
@@ -140,6 +140,8 @@ bool way0 = false;
 bool way1 = false;
 bool way2 = false;
 bool way3 = false;
+float helixAngle = 0.0;
+float helixAngleInit = 0.0;
 
 
 
@@ -247,9 +249,10 @@ int main()
 		(char*)"Models/MercedezBens/bodywork.obj",
 		(char*)"Models/MercedezBens/tires.obj",
 		(char*)"Models/Door/door.obj",
-		(char*)"Models/Window/window.obj",
+		(char*)"Models/Window/windowIzq.obj",
+		(char*)"Models/Window/windowDer.obj",
 		(char*)"Models/Basketball/basketball.obj",
-		(char*)"Models/Dron/dron.obj"
+		(char*)"Models/Dron/dron.obj",
 	};
 	
 	// Build and compile our shader program
@@ -572,6 +575,7 @@ int main()
 		//House
 		view = camera.GetViewMatrix();
 		glm::mat4 model(1);
+		glm::mat4 helixModel(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[0].Draw(lightingShader);
@@ -605,28 +609,33 @@ int main()
 		model = glm::rotate(model, doorPositionAngleInit + glm::radians(doorPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[4].Draw(lightingShader);
-		//window
+		//window left
 		model = glm::mat4(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		model = glm::translate(model, glm::vec3(-150.0f, 135.0f, 10.0f));
-		model = glm::rotate(model, windowPositionAngleInit + glm::radians(windowsPositionAngle), glm::vec3(0.0f, -1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-150.0f, 133.0f, 10.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		objects[5].Draw(lightingShader);
+		//window right
+		model = glm::mat4(1);
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-150.0f, 133.0f, 10.0f));
+		model = glm::translate(model, glm::vec3(windowPositionInit, 0.0f, 0.0f) + glm::vec3(windowsPosition, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		objects[6].Draw(lightingShader);
 		//ball
 		model = glm::mat4(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		model = glm::translate(model, glm::vec3(-200.0f, 5.0f, 200.0f));
 		model = glm::translate(model, glm::vec3(ballXInit, ballYInit, 0.0f) + glm::vec3(ballX, ballY, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		objects[6].Draw(lightingShader);
+		objects[7].Draw(lightingShader);
 		//Dron
 		model = glm::mat4(1);
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		model = glm::translate(model, glm::vec3(-100.0f, 12.0f, 600.0));
 		model = glm::translate(model, glm::vec3(dronXInit,dronYInit,dronZInit)+glm::vec3(dronX,dronY,-dronZ));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		objects[7].Draw(lightingShader);
-		
+		objects[8].Draw(lightingShader);
 
 		
 
@@ -751,16 +760,16 @@ void animacion()
 	//window animation
 	if (initWindowOpen)
 	{
-		windowsPositionAngle += 2.5;
-		if (windowsPositionAngle == 90)
+		windowsPosition -= 2.5;
+		if (windowsPosition < -50)
 		{
 			initWindowOpen = false;
 		}
 	}
 	if (initWindowClose)
 	{
-		windowsPositionAngle -= 2.5;
-		if (windowsPositionAngle == 0)
+		windowsPosition += 2.5;
+		if (windowsPosition > -1)
 		{
 			initWindowClose = false;
 		}
@@ -771,7 +780,7 @@ void animacion()
 		timeAnimation += 0.1;
 		ballX = (vInit * cos(glm::radians(ballAngleInit))) * timeAnimation;
 		ballY = (vInit * sin(glm::radians(ballAngleInit))) * timeAnimation - (9.18 * pow(timeAnimation, 2) / 2);
-		if ( ballX >= xMax - 1 )
+		if ( ballX >= xMax - 2 )
 		{
 			initBallAnimation = false;
 		}
@@ -782,7 +791,8 @@ void animacion()
 	{
 		if (way0)
 		{
-			dronY += 1.0;
+			dronY += 5.0;
+			helixAngle += 1.0;
 			if (dronY > 250)
 			{
 				way0 = false;
