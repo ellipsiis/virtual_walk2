@@ -803,9 +803,6 @@ void animacion()
 		{
 			dronZ -= 1.0;
 			dronX = sqrt((90000000000 / 250000) - (360000 * pow(dronZ, 2) / 250000));
-			printf("Way1\n");
-			printf("dronZ: %.4f\n", dronZ);
-			printf("dronX: %.4f\n", dronX);
 			if (dronZ < -500)
 			{
 				way1 = false;
@@ -816,9 +813,6 @@ void animacion()
 		{
 			dronZ += 1.0;
 			dronX = (-1)*sqrt((90000000000 / 250000) - (360000 * pow(dronZ, 2) / 250000));
-			printf("Way2\n");
-			printf("dronZ: %.4f\n", dronZ);
-			printf("dronX: %.4f\n", dronX);
 			if (dronZ > 500)
 			{
 				way2 = false;
